@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupAudioListeners();
   setupControlListeners();
   setupMascotAndSoundboard();
+  setupCarousel();
   resizeVisualizer();
 });
 
@@ -870,4 +871,35 @@ function playSynthesizedSound(type) {
       break;
     }
   }
+}
+
+// --- CAROUSEL LOGIC ---
+function setupCarousel() {
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".dot");
+  const btnPrev = document.getElementById("carousel-prev");
+  const btnNext = document.getElementById("carousel-next");
+  
+  if (!slides.length) return;
+  
+  let currentSlide = 0;
+  
+  function showSlide(index) {
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+    
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add("active");
+    if (dots[currentSlide]) dots[currentSlide].classList.add("active");
+  }
+  
+  btnPrev.addEventListener("click", () => showSlide(currentSlide - 1));
+  btnNext.addEventListener("click", () => showSlide(currentSlide + 1));
+  
+  dots.forEach(dot => {
+    dot.addEventListener("click", (e) => {
+      const idx = parseInt(e.target.dataset.slide, 10);
+      showSlide(idx);
+    });
+  });
 }
