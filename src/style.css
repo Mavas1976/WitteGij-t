@@ -95,6 +95,40 @@ body {
   box-shadow: var(--glass-shadow);
 }
 
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.header-logo-link {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.header-logo-link:hover {
+  transform: scale(1.08) rotate(4deg);
+}
+
+.header-logo-img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid var(--color-orange-primary);
+  box-shadow: var(--glow-orange);
+  background-color: #fff;
+  object-fit: contain;
+  padding: 2px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .kruikenstad-ribbon {
   position: absolute;
   top: 0;
@@ -964,6 +998,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
     justify-content: space-between;
     text-align: left;
     padding: 1.5rem 2rem;
+  }
+
+  .logo-area {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 1.25rem;
+    width: auto;
+  }
+
+  .title-container {
+    align-items: flex-start;
+    text-align: left;
   }
   
   .glow-title {
