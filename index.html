@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Witte Gij'ten — De CD Website (Tilburg)</title>
+  <!-- Google Fonts for retro/modern carnival vibe -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Titan+One&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="kruikenstad-ribbon">
+        <span class="ribbon-green"></span>
+        <span class="ribbon-orange"></span>
+      </div>
+      <div class="logo-area">
+        <h1 class="glow-title">WITTE GIJ'TEN</h1>
+        <p class="subtitle">De Officiële CD & Jukebox — Rechtstreeks uit Kruikenstad (Tilburg)</p>
+      </div>
+      <div class="social-badge">
+        <a href="https://github.com/Mavas1976/WitteGij-t" target="_blank" rel="noopener noreferrer" id="github-badge">
+          <i class="fab fa-github"></i> Mavas1976 / WitteGij-t
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="main-grid">
+      <!-- Left Column: The Player (Jukebox) -->
+      <section class="card jukebox-section">
+        <div class="card-header">
+          <h2><i class="fas fa-compact-disc"></i> DE JUKEBOX</h2>
+          <span class="badge status-badge" id="player-status">STANDBY</span>
+        </div>
+
+        <div class="jukebox-body">
+          <!-- 3D CD Player Container -->
+          <div class="cd-deck">
+            <div class="tonearm" id="tonearm">
+              <div class="tonearm-pivot"></div>
+              <div class="tonearm-arm"></div>
+              <div class="tonearm-head"></div>
+            </div>
+            <div class="cd-turntable">
+              <div class="cd-disc" id="cd-disc">
+                <img src="/De CD.jpeg" alt="Witte Gij'ten CD Cover" class="cd-cover-image">
+                <div class="cd-center-hole"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Track Display -->
+          <div class="track-info-panel">
+            <h3 id="current-track-title">Kies een nummer...</h3>
+            <p id="current-track-details" class="tech-mono">Geen actieve track</p>
+          </div>
+
+          <!-- Visualizer Panel -->
+          <div class="visualizer-container">
+            <canvas id="visualizer-canvas"></canvas>
+            <div class="visualizer-overlay-text tech-mono" id="visualizer-info">AUDIO VISUALIZER ACTIVE</div>
+          </div>
+
+          <!-- Controls Section -->
+          <div class="controls-panel">
+            <div class="timeline-container">
+              <span id="time-current" class="time tech-mono">00:00</span>
+              <input type="range" id="progress-bar" min="0" max="100" value="0" step="0.1">
+              <span id="time-total" class="time tech-mono">00:00</span>
+            </div>
+
+            <div class="buttons-row">
+              <button class="btn btn-secondary" id="btn-prev" title="Vorige track">
+                <i class="fas fa-backward"></i>
+              </button>
+              <button class="btn btn-primary btn-play-pause" id="btn-play" title="Speel af / Pauzeer">
+                <i class="fas fa-play" id="play-icon"></i>
+              </button>
+              <button class="btn btn-secondary" id="btn-next" title="Volgende track">
+                <i class="fas fa-forward"></i>
+              </button>
+              <button class="btn btn-accent" id="btn-download-active" title="Download dit nummer">
+                <i class="fas fa-download"></i>
+              </button>
+            </div>
+
+            <div class="volume-container">
+              <i class="fas fa-volume-down" id="volume-icon"></i>
+              <input type="range" id="volume-slider" min="0" max="1" value="0.7" step="0.05">
+              <i class="fas fa-volume-up"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Playlist & Trojaanse Geit -->
+      <div class="right-column-grid">
+        <!-- Playlist Card -->
+        <section class="card playlist-section">
+          <div class="card-header">
+            <h2><i class="fas fa-list-ol"></i> DE SPEELLIJST</h2>
+            <button class="btn btn-small btn-green" id="btn-download-all">
+              <i class="fas fa-file-archive"></i> Download Alles
+            </button>
+          </div>
+          <div class="playlist-body">
+            <div class="playlist-scroll" id="playlist-container">
+              <!-- Dynamically populated in main.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Fun and Interactive Soundboard / Trojaanse Geit -->
+        <section class="card fun-section">
+          <div class="card-header">
+            <h2><i class="fas fa-face-laugh-beam"></i> DE TROJAANSE GEIT</h2>
+            <span class="badge accent-badge">TILLBURG FUN</span>
+          </div>
+          <div class="fun-body">
+            <div class="mascot-frame">
+              <div class="polaroid" id="mascot-trigger">
+                <img src="/Gij't van het Troje.jpeg" alt="Gij't van het Troje" class="mascot-img">
+                <div class="polaroid-text">
+                  <h3>Gij't van het Troje</h3>
+                  <p class="tech-mono">Klik mij veur leut & confetti!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Party Controls / Leutmeter -->
+            <div class="party-controls">
+              <div class="leutmeter-container">
+                <div class="leutmeter-label">
+                  <span>LEUT-METER</span>
+                  <span id="leut-percentage" class="tech-mono">0%</span>
+                </div>
+                <div class="leutmeter-track">
+                  <div class="leutmeter-bar" id="leutmeter-bar"></div>
+                </div>
+              </div>
+
+              <div class="party-buttons">
+                <button class="btn btn-orange" id="btn-leut" title="Verhoog de leut!">
+                  <i class="fas fa-fire"></i> Pomp de Leut!
+                </button>
+                <button class="btn btn-green" id="btn-confetti" title="Spuit confetti!">
+                  <i class="fas fa-wand-magic-sparkles"></i> Confetti Knal!
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Tilburgian Trivia / Soundboard Row -->
+    <section class="card trivia-section">
+      <div class="card-header">
+        <h2><i class="fas fa-beer-mug-empty"></i> KRUIKENSTAD KLANKBORD (SOUNDBOARD)</h2>
+      </div>
+      <div class="trivia-body soundboard-grid">
+        <button class="sound-btn" data-sound="goat-1">🐐 Brabantse Geit</button>
+        <button class="sound-btn" data-sound="cheers">🍻 Proost!</button>
+        <button class="sound-btn" data-sound="alarm">🚨 Carnavals Alarm</button>
+        <button class="sound-btn" data-sound="synth-lead">🎹 Leut Synth</button>
+        <button class="sound-btn" data-sound="beat">🥁 Kruiken Beat</button>
+        <button class="sound-btn" data-sound="horn">🎺 Toeter</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <p>&copy; 2026 De Witte Gij'ten &bull; Gemaakt veur alle Kruiken en Kruikinnen in Tilburg en daarbuiten.</p>
+      <p class="sub-footer">Alaaf! Alaaf! Alaaf! &bull; GitHub: <a href="https://github.com/Mavas1976" target="_blank" rel="noopener noreferrer">Mavas1976</a></p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
