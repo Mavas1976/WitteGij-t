@@ -2,14 +2,14 @@
 
 // Track data representing the 8 CD songs in the root folder
 const tracks = [
-  { file: "01 CarnaCabana kroegenmix.mp3.mpeg", title: "01. CarnaCabana Kroegenmix" },
-  { file: "02 Hij is gek Hor.mp3.mpeg", title: "02. Hij is gek Hor!" },
-  { file: "03 House gek Hor.mp3.mpeg", title: "03. House gek Hor!" },
-  { file: "04 Als ik jou wil.....mp3.mpeg", title: "04. Als ik jou wil..." },
-  { file: "05 Als jou wil House Mix.mp3.mpeg", title: "05. Als jou wil (House Mix)" },
-  { file: "06 Ziek zwak en Misselijk.mp3.mpeg", title: "06. Ziek Zwak en Misselijk" },
-  { file: "07 Zen er nog wa Wittegijten hier!!.mp3.mpeg", title: "07. Zen er nog wa Wittegijten hier!!" },
-  { file: "08 CarbaCabana No Vocals.mp3.mpeg", title: "08. CarnaCabana (No Vocals)" }
+  { file: "01 CarnaCabana kroegenmix.mp3.mpeg", title: "CarnaCabana Kroegenmix" },
+  { file: "02 Hij is gek Hor.mp3.mpeg", title: "Hij is gek Hor!" },
+  { file: "03 House gek Hor.mp3.mpeg", title: "House gek Hor!" },
+  { file: "04 Als ik jou wil.....mp3.mpeg", title: "Als ik jou wil..." },
+  { file: "05 Als jou wil House Mix.mp3.mpeg", title: "Als jou wil (House Mix)" },
+  { file: "06 Ziek zwak en Misselijk.mp3.mpeg", title: "Ziek Zwak en Misselijk" },
+  { file: "07 Zen er nog wa Wittegijten hier!!.mp3.mpeg", title: "Zen er nog wa Wittegijten hier!!" },
+  { file: "08 CarbaCabana No Vocals.mp3.mpeg", title: "CarnaCabana (No Vocals)" }
 ];
 
 // State variables
